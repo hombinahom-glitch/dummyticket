@@ -42,7 +42,7 @@ const portfolioData = {
         deliverables: '500+ foto teredited, 1 highlight video, 1 full ceremony video',
         // COVER CARD — foto yang tampil di grid portfolio
         coverImage: {
-            url: 'images/portfolio/wedding/ceremony-moment.jpg',
+            url: 'Cover.jpg',
             pos: '50% 50%',   // ← ubah posisi fokus
             zoom: 1.0         // ← ubah zoom
         },
@@ -66,7 +66,7 @@ const portfolioData = {
         duration: '3 hari shooting',
         deliverables: '150+ foto produk, 50+ lifestyle shots',
         coverImage: {
-            url: 'F:\web ticket\rev 2\images\portofolio\Cover1.jpg',
+            url: 'Cover1.jpg',
             pos: '50% 50%',
             zoom: 1.0
         },
