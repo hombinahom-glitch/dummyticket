@@ -157,7 +157,7 @@
             <!-- Photography Projects -->
             <div class="portfolio-main-item" data-category="photography" data-portfolio-id="wedding-photo">
                 <div class="portfolio-main-image">
-                    <img src="Cover.jpg" alt="Photography Project">
+                    <img src="F:\web ticket\rev 2\images\portofolio\wedding\Cover.jpg" alt="Photography Project">
                     <div class="portfolio-overlay">
                         <div class="portfolio-overlay-content">
                             <span class="portfolio-category">PHOTOGRAPHY</span>
@@ -168,9 +168,9 @@
                 </div>
             </div>
 
-            <div class="portfolio-main-item" data-category="photography" data-portfolio-id="product-photo">
+            <div class="portfolio-main-item large" data-category="photography" data-portfolio-id="product-photo">
                 <div class="portfolio-main-image">
-                    <img src="Cover1.jpg" alt="Photography Project">
+                    <img src="F:\web ticket\rev 2\images\portofolio\product\Cover.jpg" alt="Photography Project">
                     <div class="portfolio-overlay">
                         <div class="portfolio-overlay-content">
                             <span class="portfolio-category">PHOTOGRAPHY</span>
@@ -257,7 +257,39 @@
         </div>
     </footer>
 
+    <!-- Photo Adjustment Panel -->
+    <div class="photo-adjust-panel" id="photoAdjustPanel">
+        <div class="photo-adjust-inner">
+            <div class="photo-adjust-header">
+                <h3>✏️ ADJUST FOTO</h3>
+                <button class="photo-adjust-close" onclick="closeEditPanel()">×</button>
+            </div>
+            <p class="photo-adjust-hint">Klik & drag pada preview untuk menggeser posisi focal point foto. Perubahan tersimpan otomatis.</p>
+
+            <div class="canvas-wrapper" id="canvasWrapper">
+                <canvas id="adjustCanvas" width="480" height="320"></canvas>
+                <div class="adjust-dot" id="adjustDot"></div>
+                <div class="canvas-crosshair-h"></div>
+                <div class="canvas-crosshair-v"></div>
+            </div>
+
+            <div class="photo-adjust-controls">
+                <div class="adjust-row">
+                    <label>🔍 ZOOM</label>
+                    <input type="range" id="zoomSlider" min="100" max="200" step="1" value="100">
+                    <span id="zoomValue">100%</span>
+                </div>
+            </div>
+
+            <div class="photo-adjust-actions">
+                <button class="adjust-btn-reset" onclick="resetAdjustment()">↺ Reset</button>
+                <button class="adjust-btn-done" onclick="closeEditPanel()">✓ Selesai</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Portfolio Detail Modal -->
+
     <div class="portfolio-modal" id="portfolioModal">
         <button class="portfolio-modal-close" onclick="closePortfolioModal()">×</button>
         <div class="portfolio-modal-content" id="portfolioModalContent">
