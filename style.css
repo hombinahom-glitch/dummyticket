@@ -651,13 +651,19 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
+.portfolio-modal-gallery-item {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #111;
+}
+
 .portfolio-modal-gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
-    aspect-ratio: 4/3;
 }
 
 .portfolio-modal-gallery-item:hover img {
@@ -1476,8 +1482,8 @@ body {
 
 .portfolio-main-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -1500,12 +1506,12 @@ body {
 .portfolio-main-image {
     position: relative;
     width: 100%;
-    height: 400px;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
 }
 
 .portfolio-main-item.large .portfolio-main-image {
-    height: 500px;
+    aspect-ratio: 16 / 9;
 }
 
 .portfolio-main-image img {
@@ -1953,8 +1959,12 @@ body {
         gap: 3rem;
     }
     
+    .portfolio-main-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .portfolio-main-item.large {
-        grid-column: span 1;
+        grid-column: span 2;
     }
 }
 
@@ -1984,6 +1994,15 @@ body {
     
     .portfolio-main-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .portfolio-main-item.large {
+        grid-column: span 1;
+    }
+    
+    .portfolio-main-image,
+    .portfolio-main-item.large .portfolio-main-image {
+        aspect-ratio: 4 / 3;
     }
     
     .social-links {
@@ -2358,4 +2377,136 @@ body {
     .photo-adjust-inner {
         padding: 1.5rem 1.25rem;
     }
+}
+
+/* ============================================================
+   TEAM PHOTO ADJUST SYSTEM
+   ============================================================ */
+
+/* Make team-photo a positioning context */
+.team-photo.adjustable-photo {
+    position: relative;
+    overflow: hidden;
+    transition: max-width 0.3s ease;
+}
+
+/* The Adjust button — shows on hover like portfolio cards */
+.team-photo-adjust-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(10, 10, 10, 0.85);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.72rem;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+}
+
+.team-member:hover .team-photo-adjust-btn,
+.about-main-image:hover .team-photo-adjust-btn {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.team-photo-adjust-btn:hover {
+    background: #FF5722;
+    border-color: #FF5722;
+}
+
+/* Also apply to about-main-image when used as adjustable */
+.about-main-image.adjustable-photo {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Crosshair lines in canvas (same as portfolio panel) */
+.canvas-crosshair-h,
+.canvas-crosshair-v {
+    display: none; /* handled by canvas drawing */
+}
+
+
+/* ============================================================
+   PHOTO POS/ZOOM SUPPORT — Jangan dihapus
+   Memastikan object-position dan transform dari script.js
+   tidak konflik dengan hover animation.
+   ============================================================ */
+
+/* Portfolio card images — isolate zoom transform from hover scale */
+.portfolio-main-image {
+    overflow: hidden; /* clip zoom */
+}
+
+.portfolio-main-image img {
+    /* JS sets transform:scale(zoom) via style attr.
+       Hover scale dihandle terpisah via parent transform,
+       jadi img pakai transform-origin yang sama dengan pos. */
+    will-change: transform, object-position;
+}
+
+/* Team photos */
+.team-photo {
+    overflow: hidden;
+}
+
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform, object-position;
+}
+
+/* About main image */
+.about-main-image {
+    overflow: hidden;
+}
+
+.about-main-image img {
+    will-change: transform, object-position;
+}
+
+/* Hero circular frame */
+.circular-frame {
+    overflow: hidden;
+}
+
+.circular-frame img {
+    will-change: transform, object-position;
+}
+
+/* ============================================================
+   MODAL GALLERY ITEM
+   ============================================================ */
+
+/* Ukuran gambar di dalam modal gallery seragam */
+.portfolio-modal-gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    aspect-ratio: 4 / 3;
+    background: #111;
+}
+
+.portfolio-modal-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-modal-gallery-item:hover img {
+    transform: scale(1.05);
 }
